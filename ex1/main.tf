@@ -15,7 +15,7 @@ provider "aws" {
 }
 
 resource "aws_launch_configuration" "example" {
-  ami           = "ami-40d28157"
+  image_id           = "ami-40d28157"
   instance_type = "t2.micro"
   security_groups = ["${aws_security_group.instance.id}"]
 
@@ -24,10 +24,6 @@ resource "aws_launch_configuration" "example" {
               echo "Hello, World" > index.html
               nohup busybox httpd -f -p "${var.server_port}" &
               EOF
-
-  tags {
-    Name = "terraform-example"
-  }
 
   lifecycle {
     create_before_destroy = true
@@ -94,14 +90,14 @@ resource "aws_security_group" "elb" {
     from_port     = 80
     to_port       = 80
     protocol      = "tcp"
-    cdir_blocks   = ["0.0.0.0/0"]
+    cidr_blocks   = ["0.0.0.0/0"]
   }
 
   egress {
     from_port     = 80
     to_port       = 80
     protocol      = "-1"
-    cdir_blocks   = ["0.0.0.0/0"]
+    cidr_blocks   = ["0.0.0.0/0"]
   }
 }
 
