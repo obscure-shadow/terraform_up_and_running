@@ -94,13 +94,13 @@ resource "aws_security_group" "elb" {
   }
 
   egress {
-    from_port     = 80
-    to_port       = 80
+    from_port     = 0
+    to_port       = 0
     protocol      = "-1"
     cidr_blocks   = ["0.0.0.0/0"]
   }
 }
 
-/* output "public_ip" { */
-  /* value = "${aws_instance.example.public_ip}" */
-/* } */
+output "elb_dns_name" {
+  value = "${aws_elb.example.dns_name}"
+}
