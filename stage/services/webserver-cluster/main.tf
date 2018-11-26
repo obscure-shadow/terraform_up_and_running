@@ -1,10 +1,7 @@
 variable "aws_access_key" {}
 variable "aws_secret_key" {}
 variable "aws_region" {}
-variable "server_port" {
-  description = "posrt the server will use for http requests"
-  default = 8080
-}
+
 
 data "aws_availability_zones" "all"{}
 
@@ -101,6 +98,4 @@ resource "aws_security_group" "elb" {
   }
 }
 
-output "elb_dns_name" {
-  value = "${aws_elb.example.dns_name}"
-}
+
