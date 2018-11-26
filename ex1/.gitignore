@@ -1,6 +1,0 @@
-*.terraform
-*.tfstate
-*.tfstate.backup
-
-# so I couldn't get the env variables to work, perhaps that's not super important
-*terraform.tfvars
